@@ -3,6 +3,9 @@
 # Los cursos se exportan como shortname.mbz 
 # La ruta donde se dejan las copias de seguridad se indica en donde se ejecuta course-backup TO-DO:Convertir en parámetro
 #
+# Código en github: https://github.com/catedu/fp-distancia-courses-backup
+#
+
 
 # Se obtiene el listado de cursos
 CURSOS=`moosh -n -p /var/www/html course-list`
