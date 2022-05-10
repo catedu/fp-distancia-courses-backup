@@ -10,6 +10,7 @@
 LOCALROOT=$(pwd)
 DATE=$( date -u +"%Y%m%d" )
 DESTINO="${LOCALROOT}/zz_mbzs_${DATE}"
+FECHA_HORA_INI=$( date -u +"%Y%m%d" )
 
 echo "${DESTINO}"
 echo "$DESTINO"
@@ -47,4 +48,8 @@ while IFS= read -r linea; do
   moosh -n -p /var/www/html course-backup -F -f ${DESTINO}/$NOMBRE $ID
 done <<< "$CURSOS"
 
+FECHA_HORA_FIN=$( date -u +"%Y%m%d" )
+
+echo "Empezó ${FECHA_HORA_INI}"
+echo "Terminó ${FECHA_HORA_FIN}"
 echo "Proceso terminado"
