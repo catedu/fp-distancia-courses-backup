@@ -10,7 +10,7 @@
 LOCALROOT=$(pwd)
 DATE=$( date -u +"%Y%m%d" )
 DESTINO="${LOCALROOT}/zz_mbzs_${DATE}"
-FECHA_HORA_INI=$( date -u +"%Y%m%d" )
+FECHA_HORA_INI=$( date -u +"%Y/%m/%d %H:%M:%S" )
 
 echo "${DESTINO}"
 echo "$DESTINO"
@@ -43,12 +43,15 @@ while IFS= read -r linea; do
   # Creo el nombre del fichero
   NOMBRE=`echo ${SHORTNAME}.mbz`
   #echo "NOMBRE: $NOMBRE"
-  echo "Exportando el curso ${SHORTNAME} (id $ID)... (se paciente, hay cursos de gran tamaño)"
+  
   # Realizo la exportanción del curso de id $ID en la ruta indicada con el nombre $NOMBRE creado
-  moosh -n -p /var/www/html course-backup -F -f ${DESTINO}/$NOMBRE $ID
+  # siempre que no exista ya un fichero con ese nombre
+  NOW=$( date -u +"%Y/%m/%d %H:%M:%S" )
+  echo "${NOW} Exportando el curso ${SHORTNAME} (id $ID)... (se paciente, hay cursos de gran tamaño)"
+  [ ! -f ${DESTINO}/$NOMBRE ] && moosh -n -p /var/www/html course-backup -F -f ${DESTINO}/$NOMBRE $ID
 done <<< "$CURSOS"
 
-FECHA_HORA_FIN=$( date -u +"%Y%m%d" )
+FECHA_HORA_FIN=$( date -u +"%Y/%m/%d %H:%M:%S" )
 
 echo "Empezó ${FECHA_HORA_INI}"
 echo "Terminó ${FECHA_HORA_FIN}"
