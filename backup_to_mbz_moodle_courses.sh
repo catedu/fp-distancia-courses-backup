@@ -48,7 +48,7 @@ while IFS= read -r linea; do
   # siempre que no exista ya un fichero con ese nombre
   NOW=$( date -u +"%Y/%m/%d %H:%M:%S" )
   echo "${NOW} Exportando el curso ${SHORTNAME} (id $ID)... (se paciente, hay cursos de gran tamaño)"
-  [ ! -f ${DESTINO}/$NOMBRE ] && moosh -n -p /var/www/html course-backup -F -f ${DESTINO}/$NOMBRE $ID
+  [ ! -f ${DESTINO}/$NOMBRE ] && moosh -n -p /var/www/html course-backup -f ${DESTINO}/$NOMBRE $ID
 done <<< "$CURSOS"
 
 FECHA_HORA_FIN=$( date -u +"%Y/%m/%d %H:%M:%S" )
